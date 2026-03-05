@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  # Der Datenbank-Server
+  db:
+    image: mariadb:latest
+    container_name: tresor-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tresor_db
+      MYSQL_USER: tresor_user
+      MYSQL_PASSWORD: password123
+    ports:
+      - "3308:3306"
+    volumes:
+      - ./db-data:/var/lib/mysql
+      # Falls du ein SQL-Init-Skript hast, kannst du es hier mounten:
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # Grafische Oberfläche für die Datenbank
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: tresor-pma
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: root
+    depends_on:
+      - db
