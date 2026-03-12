@@ -72,4 +72,4 @@ public class PasswordEncryptService {
         key = Arrays.copyOf(key, 16);
         return new SecretKeySpec(key, "AES");
     }
-}
+} 
