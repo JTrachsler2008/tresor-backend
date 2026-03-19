@@ -24,4 +24,4 @@ public class EncryptUtil {
    public String decrypt(String data) {
       return encryptor.decrypt(data);
    }
-}
+} 
