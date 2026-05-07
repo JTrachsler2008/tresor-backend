@@ -15,7 +15,6 @@ import java.util.function.Supplier;
 public class SafeDbCall {
     private static final Logger log = LoggerFactory.getLogger(SafeDbCall.class);
 
-    //wrapper for dbcalls and exception handling for suppliers
     public static <T> T safeDbCall(Supplier<T> dbCall, T fallback) {
         try {
             return dbCall.get();
@@ -24,7 +23,7 @@ public class SafeDbCall {
             return fallback;
         }
     }
-    //wrapper for db-calls and exception handling for runables
+
     public static boolean safeDbCall(Runnable dbAction) {
         try {
             dbAction.run();

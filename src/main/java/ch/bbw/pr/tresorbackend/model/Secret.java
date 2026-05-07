@@ -3,7 +3,6 @@ package ch.bbw.pr.tresorbackend.model;
 import com.fasterxml.jackson.annotation.JsonRawValue;
 import jakarta.persistence.*;
 import lombok.*;
-
 /**
  * Secret
  * @author Peter Rutschmann

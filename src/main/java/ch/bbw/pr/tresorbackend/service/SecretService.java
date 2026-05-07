@@ -7,6 +7,7 @@ import java.util.List;
  * SecretService
  * @author Peter Rutschmann
  */
+
 public interface SecretService {
    Secret createSecret(Secret secret);
 

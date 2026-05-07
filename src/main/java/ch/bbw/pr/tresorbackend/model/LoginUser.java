@@ -8,6 +8,7 @@
     *   DTO for simple login
     * @author Peter Rutschmann
     */
+
    @Value
    public class LoginUser {
       @NotEmpty (message="E-Mail is required.")

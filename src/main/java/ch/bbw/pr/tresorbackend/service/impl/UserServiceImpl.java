@@ -26,8 +26,7 @@ public class UserServiceImpl implements UserService {
 
    @Override
    public User createUser(User user) {
-      // Passwort kommt bereits gehasht (BCrypt + Pepper) vom UserController
-      // Hier NICHT nochmals hashen!
+
       return SafeDbCall.safeDbCall(() -> userRepository.save(user), null);
    }
 
@@ -37,6 +36,7 @@ public class UserServiceImpl implements UserService {
       if (user.isPresent()) return user.get();
       return null;
    }
+
 
    @Override
    public User findByEmail(String email) {

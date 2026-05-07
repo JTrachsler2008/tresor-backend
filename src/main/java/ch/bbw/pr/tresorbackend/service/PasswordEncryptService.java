@@ -27,7 +27,6 @@ public class PasswordEncryptService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // --- USER-PASSWÖRTER (Hashing) ---
     public String hashPassword(String rawPassword) {
         System.out.println("DEBUG hashPassword pepper: '" + pepper + "'");
         System.out.println("DEBUG hashPassword input: '" + rawPassword + pepper + "'");
@@ -40,7 +39,6 @@ public class PasswordEncryptService {
         return passwordEncoder.matches(rawPassword + pepper, hashedDbPassword);
     }
 
-    // --- SECRETS (AES Verschlüsselung) ---
     public String encrypt(String strToEncrypt, String userSpecificPart) {
         try {
             SecretKeySpec secretKey = deriveKey(userSpecificPart);
@@ -51,7 +49,7 @@ public class PasswordEncryptService {
             return null;
         }
     }
-   // --- SECRETS (Entschlüsselung & Key-Derivation) ---
+
     public String decrypt(String strToDecrypt, String userSpecificPart) {
         try {
             SecretKeySpec secretKey = deriveKey(userSpecificPart);
@@ -63,7 +61,6 @@ public class PasswordEncryptService {
         }
     }
 
-    // --- Erzeugt einen eindeutigen AES-Key aus Masterkey + User-ID ---
     private SecretKeySpec deriveKey(String userPart) throws Exception {
         String combined = masterKey + userPart;
         byte[] key = combined.getBytes(StandardCharsets.UTF_8);

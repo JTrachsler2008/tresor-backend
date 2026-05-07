@@ -12,6 +12,7 @@ import lombok.*;
 @Value
 public class RegisterUser {
 
+
    @NotEmpty(message="Firstname is required.")
    @Size(min=2, max=25, message="Firstname size has to be 2 up to 25 characters.")
    private String firstName;

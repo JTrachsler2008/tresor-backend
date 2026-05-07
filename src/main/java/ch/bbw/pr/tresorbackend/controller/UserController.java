@@ -32,16 +32,14 @@ public class UserController {
    private PasswordEncryptService passwordService;
    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-   // build create User REST API
+
    @CrossOrigin(origins = "${CROSS_ORIGIN}")
    @PostMapping
    public ResponseEntity<String> createUser(@Valid @RequestBody RegisterUser registerUser, BindingResult bindingResult) {
-      //captcha
-      //todo add implementation
 
       System.out.println("UserController.createUser: captcha passed.");
 
-      //input validation
+
       if (bindingResult.hasErrors()) {
          List<String> errors = bindingResult.getFieldErrors().stream()
                  .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
@@ -59,11 +57,10 @@ public class UserController {
       }
       System.out.println("UserController.createUser: input validation passed");
 
-      //password validation
-      //todo add implementation
+
       System.out.println("UserController.createUser, password validation passed");
 
-      //transform registerUser to user
+
       User user = new User(
               null,
               registerUser.getFirstName(),
@@ -86,8 +83,7 @@ public class UserController {
       return ResponseEntity.accepted().body(json);
    }
 
-   // build get user by id REST API
-   // http://localhost:8080/api/users/1
+
    @CrossOrigin(origins = "${CROSS_ORIGIN}")
    @GetMapping("{id}")
    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId) {
@@ -96,8 +92,6 @@ public class UserController {
       return new ResponseEntity<>(user, HttpStatus.OK);
    }
 
-   // Build Get All Users REST API
-   // http://localhost:8080/api/users
    @CrossOrigin(origins = "${CROSS_ORIGIN}")
    @GetMapping
    public ResponseEntity<List<User>> getAllUsers() {
@@ -106,8 +100,7 @@ public class UserController {
       return new ResponseEntity<>(users, HttpStatus.OK);
    }
 
-   // Build Update User REST API
-   // http://localhost:8080/api/users/1
+
    @CrossOrigin(origins = "${CROSS_ORIGIN}")
    @PutMapping("{id}")
    public ResponseEntity<User> updateUser(@PathVariable("id") Long userId,
@@ -118,7 +111,7 @@ public class UserController {
       return new ResponseEntity<>(updatedUser, HttpStatus.OK);
    }
 
-   // Build Delete User REST API
+
    @CrossOrigin(origins = "${CROSS_ORIGIN}")
    @DeleteMapping("{id}")
    public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) {
@@ -127,12 +120,11 @@ public class UserController {
       return ResponseEntity.notFound().build();
    }
 
-   // get user id by email
    @CrossOrigin(origins = "${CROSS_ORIGIN}")
    @PostMapping("/byemail")
    public ResponseEntity<String> getUserIdByEmail(@RequestBody EmailAdress email, BindingResult bindingResult) {
       System.out.println("UserController.getUserIdByEmail: " + email);
-      //input validation
+
       if (bindingResult.hasErrors()) {
          List<String> errors = bindingResult.getFieldErrors().stream()
                  .map(fieldError -> fieldError.getField() + ": " + fieldError.getDefaultMessage())
@@ -169,7 +161,7 @@ public class UserController {
       return ResponseEntity.accepted().body(json);
    }
 
-   // simple login with no websecurity, just name and password
+
    @CrossOrigin(origins = "${CROSS_ORIGIN}")
    @PostMapping("/login")
    public ResponseEntity<LoginResponse> doLoginUser(@Valid @RequestBody LoginUser loginUser, BindingResult bindingResult) {
@@ -185,11 +177,11 @@ public class UserController {
       User user = userService.findByEmail(loginUser.getEmail());
       if (user == null) {
          System.out.println("UserController.doLoginUser: user not found");
-         // Gleiche Meldung wie bei falschem Passwort -> verhindert User-Enumeration
+
          return ResponseEntity.badRequest().body(new LoginResponse("Invalid email or password", null));
       }
 
-      // --- NEU: Passwort-Check gegen den BCrypt-Hash in der DB ---
+
       if (!passwordService.checkPassword(loginUser.getPassword(), user.getPassword())) {
          System.out.println("UserController.doLoginUser: wrong password");
          return ResponseEntity.badRequest().body(new LoginResponse("Invalid email or password", null));

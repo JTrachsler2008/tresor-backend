@@ -12,3 +12,4 @@ import java.util.List;
 public interface SecretRepository extends JpaRepository<Secret, Long> {
    List<Secret> findByUserId(Long userId);
 }
+

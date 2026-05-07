@@ -53,7 +53,6 @@ public class SecretServiceImpl implements SecretService {
 
       return SafeDbCall.safeDbCall(() -> secretRepository.save(existingSecret), null);
    }
-
    @Override
    public void deleteSecret(Long secretId) {
       SafeDbCall.safeDbCall(() -> secretRepository.deleteById(secretId));
