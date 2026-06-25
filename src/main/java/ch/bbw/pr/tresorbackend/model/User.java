@@ -32,4 +32,13 @@
 
       @Column(nullable = false)
       private String password;
+
+      @Column(nullable = false)
+      private String role; // ROLE_USER or ROLE_ADMIN
+
+      @Column(name = "two_factor_enabled", nullable = false)
+      private boolean twoFactorEnabled = false;
+
+      @Column(name = "two_factor_secret")
+      private String twoFactorSecret;
    }

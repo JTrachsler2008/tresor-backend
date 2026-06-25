@@ -5,11 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * LoginResponse
- *   Data-transfer-object, response to client in case of a login request
- * @author Peter Rutschmann
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,5 +12,8 @@ import lombok.Setter;
 public class LoginResponse {
     private String message;
     private Long userId;
+    private String token;
+    private String role;
+    private boolean requiresTwoFactor;
+    private String tempToken;
 }
-

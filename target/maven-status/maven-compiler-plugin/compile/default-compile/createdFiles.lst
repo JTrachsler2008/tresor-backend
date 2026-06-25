@@ -1,0 +1,15 @@
+ch\bbw\pr\tresorbackend\service\PasswordResetService$RequestResult.class
+ch\bbw\pr\tresorbackend\repository\PasswordResetTokenRepository.class
+ch\bbw\pr\tresorbackend\service\JwtService.class
+ch\bbw\pr\tresorbackend\TresorbackendApplication.class
+ch\bbw\pr\tresorbackend\model\PasswordResetToken.class
+ch\bbw\pr\tresorbackend\service\JwtAuthenticationFilter.class
+ch\bbw\pr\tresorbackend\model\RegisterUser.class
+ch\bbw\pr\tresorbackend\service\CaptchaService.class
+ch\bbw\pr\tresorbackend\controller\UserController$1.class
+ch\bbw\pr\tresorbackend\service\TwoFactorService.class
+ch\bbw\pr\tresorbackend\controller\UserController.class
+ch\bbw\pr\tresorbackend\service\EncoderConfig.class
+ch\bbw\pr\tresorbackend\service\PasswordResetService$ResetResult.class
+ch\bbw\pr\tresorbackend\service\OAuth2SuccessHandler.class
+ch\bbw\pr\tresorbackend\service\PasswordResetService.class
